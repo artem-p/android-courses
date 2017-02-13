@@ -31,6 +31,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+
             android:text="Вкусная пицца за разумные деньги"
             android:paddingBottom="8dp"/>
 
@@ -50,7 +52,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/phone"
+                android:src="@drawable/ic_local_phone"
                 android:id="@+id/phoneIcon"
                 android:layout_marginRight="36dp"/>
 
@@ -58,17 +60,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+7 (812) 920-00-09"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/phone"
                 android:layout_toRightOf="@id/phoneIcon"
                 android:layout_marginBottom="16dp"
                 />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationIcon"
+                android:layout_below="@id/phoneIcon"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_location_on"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Проспект Косыгина 19 корп. 3"
                 android:paddingBottom="16dp"
                 android:id="@+id/address"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_below="@id/phone"
                 android:layout_alignStart="@id/phone"
                 android:layout_alignLeft="@id/phone" />

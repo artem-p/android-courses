@@ -15,7 +15,8 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:background="#fafafa">
+        android:background="#fafafa"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,17 +25,20 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:paddingBottom="16dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Вкусная пицца за разумные деньги"/>
+            android:text="Вкусная пицца за разумные деньги"
+            android:paddingBottom="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сеть пиццерий «Телепицца» предлагает на заказ более 40 видов пиццы на тонком и среднем тесте размером 30 и 40 см, с самыми разнообразными ингредиентами."/>
+            android:text="Сеть пиццерий «Телепицца» предлагает на заказ более 40 видов пиццы на тонком и среднем тесте размером 30 и 40 см, с самыми разнообразными ингредиентами."
+            android:paddingBottom="16dp"/>
 
 
         <TextView
@@ -48,15 +52,15 @@
             android:layout_height="wrap_content"
             android:text="+7 (812) 920-00-09"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Вс-Чт: 11:00–22:45"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Вс-Чт: 11:00–22:45"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Пт-Сб: 11:00–23:00"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Пт-Сб: 11:00–23:00"/>-->
 
     </LinearLayout>
 </LinearLayout>

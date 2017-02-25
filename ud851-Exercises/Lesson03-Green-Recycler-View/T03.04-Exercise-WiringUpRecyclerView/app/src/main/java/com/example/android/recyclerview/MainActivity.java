@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mNumberRecycler.setHasFixedSize(true);
 
         mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
-        
+
         mNumberRecycler.setAdapter(mAdapter);
     }
 }

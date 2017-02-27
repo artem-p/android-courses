@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
-            mForecastAdapter = null;
+            mForecastAdapter.setWeatherData(null);
             loadWeatherData();
             return true;
         }
@@ -184,4 +184,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-// TODO перенести в cheatsheet разметку по крайней мере

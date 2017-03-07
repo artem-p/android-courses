@@ -36,6 +36,38 @@
         android:gravity="center"
         />
     
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/rlRatingButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etBillAmount"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <ImageButton
+            android:id="@+id/idRegularService"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/activity_image_buttons"
+            android:layout_weight="1"
+            android:background="@color/colorBlue"/>
+
+        <ImageButton
+            android:id="@+id/idGoodService"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/activity_image_buttons"
+            android:layout_weight="1"
+            android:background="@color/colorBlue"
+            />
+
+        <ImageButton
+            android:id="@+id/idExcellentService"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/activity_image_buttons"
+            android:layout_weight="1"
+            android:background="@color/colorBlue"/>
+
+
+    </LinearLayout>
     <!--<View-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="1dp"-->

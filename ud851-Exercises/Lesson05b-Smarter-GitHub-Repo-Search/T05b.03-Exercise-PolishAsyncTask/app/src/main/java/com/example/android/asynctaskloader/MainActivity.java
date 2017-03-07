@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * This method will make the View for the JSON data visible and
+     * This method will make the ererrView for the JSON data visible and
      * hide the error message.
      * <p>
      * Since it is okay to redundantly set the visibility of a View, we don't
@@ -165,8 +165,7 @@ public class MainActivity extends AppCompatActivity implements
     public Loader<String> onCreateLoader(int id, final Bundle args) {
         return new AsyncTaskLoader<String>(this) {
 
-            // TODO (1) Create a String member variable called mGithubJson that will store the raw JSON
-
+            String mGithubJson;
             @Override
             protected void onStartLoading() {
 
@@ -179,10 +178,18 @@ public class MainActivity extends AppCompatActivity implements
                  * When we initially begin loading in the background, we want to display the
                  * loading indicator to the user
                  */
+
+
+                //todo проверить, непонятно
+
+
                 mLoadingIndicator.setVisibility(View.VISIBLE);
 
-                // TODO (2) If mGithubJson is not null, deliver that result. Otherwise, force a load
-                forceLoad();
+                if (mGithubJson != null) {
+                    deliverResult(mGithubJson);
+                } else {
+                    forceLoad();
+                }
             }
 
             @Override
@@ -207,8 +214,12 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
 
-            // TODO (3) Override deliverResult and store the data in mGithubJson
-            // TODO (4) Call super.deliverResult after storing the data
+            @Override
+            public void deliverResult(String data) {
+                mGithubJson = data;
+                super.deliverResult(data);
+            }
+
         };
     }
 

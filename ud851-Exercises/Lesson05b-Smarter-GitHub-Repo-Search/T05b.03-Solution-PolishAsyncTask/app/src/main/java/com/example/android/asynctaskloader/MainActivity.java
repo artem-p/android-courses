@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements
                  * cached results, force a load.
                  */
                 if (mGithubJson != null) {
+                    mLoadingIndicator.setVisibility(View.INVISIBLE);
                     deliverResult(mGithubJson);
                 } else {
                     forceLoad();

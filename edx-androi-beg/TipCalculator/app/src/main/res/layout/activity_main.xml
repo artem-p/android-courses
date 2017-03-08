@@ -49,7 +49,9 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/activity_image_buttons"
             android:layout_weight="1"
-            android:background="@color/colorBlue"/>
+            android:background="@color/colorBlue"
+            android:src="@drawable/emoticon_neutral"
+            />
 
         <ImageButton
             android:id="@+id/idGoodService"
@@ -57,6 +59,7 @@
             android:layout_height="@dimen/activity_image_buttons"
             android:layout_weight="1"
             android:background="@color/colorBlue"
+            android:src="@drawable/emoticon_happy"
             />
 
         <ImageButton
@@ -64,16 +67,19 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/activity_image_buttons"
             android:layout_weight="1"
-            android:background="@color/colorBlue"/>
+            android:background="@color/colorBlue"
+            android:src="@drawable/emoticon_excited"
+            />
 
 
     </LinearLayout>
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:id="@+id/vRatingButtons"-->
-        <!--android:layout_below="@id/etBillAmount"-->
-        <!--android:layout_marginTop="@dimen/activity_vertical_margin"-->
-        <!--android:background="@color/colorLightGray"-->
-        <!--/>-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/vRatingButtons"
+        android:layout_below="@id/rlRatingButtons"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/colorLightGray"
+        />
 </RelativeLayout>

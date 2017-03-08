@@ -140,4 +140,9 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         mWeatherData = weatherData;
         notifyDataSetChanged();
     }
+
+    public void clear() {
+        mWeatherData = null;
+        notifyDataSetChanged();
+    }
 }

@@ -32,6 +32,8 @@
         android:hint="@string/main.hint.billamount"
         android:textColor="@color/colorWhite"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        <!--не стоит использовать серый цвет для хинта, лучше прозрачность
+        https://material.io/guidelines/style/color.html#color-text-background-colors-->
         android:textColorHint="@color/colorLightGray"
         android:gravity="center"
         />

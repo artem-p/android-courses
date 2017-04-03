@@ -155,15 +155,27 @@ public class TaskContentProvider extends ContentProvider {
     // Implement delete to delete a single row of data
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
+        SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
+        int match = sUriMatcher.match(uri);
+        int tasksDeleted;
+        switch (match) {
+            case TASK_WITH_ID:
+                String id = uri.getPathSegments().get(1);
 
-        // TODO (1) Get access to the database and write URI matching code to recognize a single item
+                String where = "_id=?";
+                String[] whereArgs = new String[]{id};
+                tasksDeleted = db.delete(TaskContract.TaskEntry.TABLE_NAME,
+                        where,
+                        whereArgs);
 
-        // TODO (2) Write the code to delete a single row of data
-        // [Hint] Use selections to delete an item by its row ID
-
-        // TODO (3) Notify the resolver of a change and return the number of items deleted
-
-        throw new UnsupportedOperationException("Not yet implemented");
+                break;
+            default:
+                throw new UnsupportedOperationException("Unable to delete task. Unknown uri: " + uri);
+        }
+        if (tasksDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return tasksDeleted;
     }
 
 

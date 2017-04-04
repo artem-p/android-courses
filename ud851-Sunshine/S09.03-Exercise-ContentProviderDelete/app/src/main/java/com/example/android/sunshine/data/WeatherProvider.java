@@ -310,7 +310,7 @@ public class WeatherProvider extends ContentProvider {
 
         if (match == CODE_WEATHER) {
             rowsDeleted = db.delete(WeatherContract.WeatherEntry.TABLE_NAME,
-                        null, null);
+                        selection, selectionArgs);
         } else {
             throw new UnsupportedOperationException("Cannot delete rows with this uri: " + uri);
         }

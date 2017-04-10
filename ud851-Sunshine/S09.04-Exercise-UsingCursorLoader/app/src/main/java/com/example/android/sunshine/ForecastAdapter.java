@@ -22,15 +22,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.example.android.sunshine.data.WeatherContract;
+import com.example.android.sunshine.utilities.SunshineDateUtils;
+import com.example.android.sunshine.utilities.SunshineWeatherUtils;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts
  * from a {@link android.database.Cursor} to a {@link android.support.v7.widget.RecyclerView}.
  */
 class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
-
-    //  TODO (14) Remove the mWeatherData declaration and the setWeatherData method
-    private String[] mWeatherData;
 
     private final Context mContext;
     private Cursor mCursor;
@@ -98,13 +98,16 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
 
         mCursor.moveToPosition(position);
 
-        // todo продолжить заметку про CursorLoader
-//      TODO (7) Generate a weather summary with the date, description, high and low
-//      TODO (8) Display the summary that you created above
+        long dateMillis = mCursor.getLong(mCursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_DATE));
+        String dateStr = SunshineDateUtils.getFriendlyDateString(mContext, dateMillis, false);
+        int weatherId = mCursor.getInt(mCursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID));
+        String description = SunshineWeatherUtils.getStringForWeatherCondition(mContext, weatherId);
+        double highTemp = mCursor.getDouble(mCursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP));
+        double lowTemp = mCursor.getDouble(mCursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP));
+        String highLowFormatted = SunshineWeatherUtils.formatHighLows(mContext, highTemp, lowTemp);
+        String weatherSummary = dateStr + " - " + description + " - " + highLowFormatted;
 
-        // old
-        String weatherForThisDay = mWeatherData[position];
-        forecastAdapterViewHolder.weatherSummary.setText(weatherForThisDay);
+        forecastAdapterViewHolder.weatherSummary.setText(weatherSummary);
     }
 
     /**
@@ -115,26 +118,17 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
      */
     @Override
     public int getItemCount() {
-//      TODO (9) Delete the current body of getItemCount
-//      TODO (10) If mCursor is null, return 0. Otherwise, return the count of mCursor
-        if (null == mWeatherData) return 0;
-        return mWeatherData.length;
+        if (mCursor != null) {
+            return mCursor.getCount();
+        } else {
+            return 0;
+        }
     }
 
-    /**
-     * This method is used to set the weather forecast on a ForecastAdapter if we've already
-     * created one. This is handy when we get new data from the web but don't want to create a
-     * new ForecastAdapter to display it.
-     *
-     * @param weatherData The new weather data to be displayed.
-     */
-    public void setWeatherData(String[] weatherData) {
-        mWeatherData = weatherData;
+    void swapCursor(Cursor newCursor) {
+        mCursor = newCursor;
         notifyDataSetChanged();
     }
-
-//  TODO (11) Create a new method that allows you to swap Cursors.
-//      TODO (12) After the new Cursor is set, call notifyDataSetChanged
 
     /**
      * A ViewHolder is a required part of the pattern for RecyclerViews. It mostly behaves as
@@ -157,9 +151,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
          */
         @Override
         public void onClick(View v) {
-            //  TODO (13) Instead of passing the String from the data array, use the weatherSummary text!
-            int adapterPosition = getAdapterPosition();
-            String weatherForDay = mWeatherData[adapterPosition];
+            String weatherForDay = weatherSummary.getText().toString();
             mClickHandler.onClick(weatherForDay);
         }
     }

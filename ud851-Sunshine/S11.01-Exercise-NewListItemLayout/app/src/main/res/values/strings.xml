@@ -244,4 +244,8 @@
         Low:<xliff:g id="low">%3$s</xliff:g>
     </string>
 
+    <string name="date_placeholder">Today, December 5</string>
+    <string name="description_placeholder">Light Snow</string>
+    <string name="max_temp_placeholder">3°</string>
+    <string name="min_temp_placeholder">1°</string>
 </resources>

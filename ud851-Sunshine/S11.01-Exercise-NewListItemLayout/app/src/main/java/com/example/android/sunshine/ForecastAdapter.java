@@ -22,10 +22,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.sunshine.utilities.SunshineDateUtils;
 import com.example.android.sunshine.utilities.SunshineWeatherUtils;
+
+import org.w3c.dom.Text;
 
 /**
  * {@link ForecastAdapter} exposes a list of weather forecasts
@@ -106,9 +109,6 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
     @Override
     public void onBindViewHolder(ForecastAdapterViewHolder forecastAdapterViewHolder, int position) {
         mCursor.moveToPosition(position);
-
-//      TODO (7) Replace the single TextView with Views to display all of the weather info
-
         /*******************
          * Weather Summary *
          *******************/
@@ -124,12 +124,14 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
          /* Read low temperature from the cursor (in degrees celsius) */
         double lowInCelsius = mCursor.getDouble(MainActivity.INDEX_WEATHER_MIN_TEMP);
 
-        String highAndLowTemperature =
-                SunshineWeatherUtils.formatHighLows(mContext, highInCelsius, lowInCelsius);
+        String minTempStr = mContext.getString(R.string.format_temperature, lowInCelsius);
+        String maxTempStr = mContext.getString(R.string.format_temperature, highInCelsius);
 
-        String weatherSummary = dateString + " - " + description + " - " + highAndLowTemperature;
-
-        forecastAdapterViewHolder.weatherSummary.setText(weatherSummary);
+        forecastAdapterViewHolder.weatherIcon.setImageResource(SunshineWeatherUtils.getSmallArtResourceIdForWeatherCondition(weatherId));
+        forecastAdapterViewHolder.dateTextView.setText(dateString);
+        forecastAdapterViewHolder.descriptionTextView.setText(description);
+        forecastAdapterViewHolder.minTempTextView.setText(minTempStr);
+        forecastAdapterViewHolder.maxTempTextView.setText(maxTempStr);
     }
 
     /**
@@ -163,17 +165,22 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
      * OnClickListener, since it has access to the adapter and the views.
      */
     class ForecastAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//      TODO (4) Replace the weatherSummary TextView with individual weather detail TextViews
-        final TextView weatherSummary;
+        final TextView dateTextView;
+        final TextView descriptionTextView;
+        final TextView maxTempTextView;
+        final TextView minTempTextView;
 
-//      TODO (5) Add an ImageView for the weather icon
+        final ImageView weatherIcon;
+
 
         ForecastAdapterViewHolder(View view) {
             super(view);
 
-//          TODO (6) Get references to all new views and delete this line
-            weatherSummary = (TextView) view.findViewById(R.id.tv_weather_data);
-
+            dateTextView = (TextView) view.findViewById(R.id.textViewDate);
+            descriptionTextView = (TextView) view.findViewById(R.id.textViewDescription);
+            maxTempTextView = (TextView) view.findViewById(R.id.textViewMaxTemp);
+            minTempTextView = (TextView) view.findViewById(R.id.textViewMinTemp);
+            weatherIcon = (ImageView) view.findViewById(R.id.weatherIcon);
             view.setOnClickListener(this);
         }
 
